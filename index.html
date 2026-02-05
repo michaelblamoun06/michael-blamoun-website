@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Michael Blamoun | Professional Website</title>
+  <meta name="description" content="Professional website and digital résumé for Michael Blamoun: education, experience, certifications, skills, and contact." />
+  <meta name="robots" content="index,follow" />
+
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card: #121a2a;
+      --text: #e7eaf0;
+      --muted: #aab2c5;
+      --accent: #6ea8fe;
+      --accent2: #8be9fd;
+      --radius: 18px;
+      --max: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: #0b0f19;
+      border-bottom: 1px solid #24314d;
+      padding: 12px 18px;
+    }
+
+    nav {
+      max-width: var(--max);
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--muted);
+      margin-left: 14px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav a:hover { color: var(--text); }
+
+    main {
+      max-width: var(--max);
+      margin: auto;
+      padding: 30px 18px 80px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      margin-bottom: 6px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    h2 {
+      text-transform: uppercase;
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    ul { padding-left: 18px; }
+
+    .chips span {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #0b0f19;
+      border: 1px solid #24314d;
+      margin: 6px 6px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: .9rem;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <strong>Michael Blamoun</strong>
+    <div>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<section class="card">
+  <h1>Michael Blamoun</h1>
+  <p>
+    EMT-B, Medical Assistant, and Medical Scribe with experience in emergency response,
+    outpatient clinical care, neuroscience research, and high-level customer service.
+  </p>
+  <div class="chips">
+    <span>Troy, MI</span>
+    <span>EMT-B</span>
+    <span>MA & Scribe</span>
+    <span>Neuroscience (BS)</span>
+  </div>
+</section>
+
+<section id="about" class="card">
+  <h2>About</h2>
+  <p>
+    I am an EMT-B and Medical Assistant currently working as a medical scribe at Matthews Medical Center.
+    My background includes emergency medical services, outpatient clinical documentation,
+    and member-facing roles requiring strong communication and professionalism.
+    I am pursuing a Bachelor of Science in Neuroscience with a minor in Chemistry at Wayne State University
+    and am interested in continuing toward a career in medicine.
+  </p>
+</section>
+
+<section id="experience" class="card">
+  <h2>Experience</h2>
+
+  <h3>Medical Assistant & Medical Scribe — Matthews Medical Center</h3>
+  <p><em>January 2026 – Present</em></p>
+  <ul>
+    <li>Assist physicians with patient intake, vitals, and clinical workflows.</li>
+    <li>Document patient encounters in real time, ensuring accuracy and clarity.</li>
+    <li>Support patient flow and communication between providers and staff.</li>
+    <li>Maintain confidentiality and professionalism with sensitive health information.</li>
+  </ul>
+
+  <h3>Membership Concierge Level 1 — Life Time Fitness</h3>
+  <p><em>December 2022 – Present</em></p>
+  <ul>
+    <li>Serve as the first point of contact for members in a high-volume environment.</li>
+    <li>Resolve concerns professionally while maintaining confidentiality.</li>
+    <li>Respond to safety incidents using CPR, AED, and First Aid training.</li>
+  </ul>
+</section>
+
+<section id="education" class="card">
+  <h2>Education & Research</h2>
+
+  <p><strong>Wayne State University</strong></p>
+  <p>Bachelor of Science in Neuroscience (in progress)</p>
+  <p>Minor: Chemistry</p>
+  <ul>
+    <li>Undergraduate neuroscience research using <em>Drosophila melanogaster</em> models.</li>
+    <li>Chemistry research emphasizing experimental design and data analysis.</li>
+  </ul>
+
+  <p><strong>Dorsey College</strong> — Emergency Medical Technician (EMT-B), 2024</p>
+</section>
+
+<section class="card">
+  <h2>Certifications</h2>
+  <div class="chips">
+    <span>EMT-B (Licensed)</span>
+    <span>AHA BLS (CPR & AED)</span>
+    <span>First Aid</span>
+    <span>Lifeguard Certified</span>
+  </div>
+</section>
+
+<section id="contact" class="card">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:michaelblamoun06@outlook.com">michaelblamoun06@outlook.com</a></p>
+</section>
+
+<footer>
+  © 2026 Michael Blamoun · Project 1B Professional Website
+</footer>
+
+</main>
+</body>
+</html>
