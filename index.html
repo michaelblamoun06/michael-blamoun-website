@@ -7,197 +7,528 @@
   <meta name="description" content="Professional website and digital résumé for Michael Blamoun: education, experience, certifications, skills, and contact." />
   <meta name="robots" content="index,follow" />
 
+  <!-- Open Graph (nice previews when you share the link) -->
+  <meta property="og:title" content="Michael Blamoun | Professional Website" />
+  <meta property="og:description" content="Digital résumé: experience, projects, skills, and contact." />
+  <meta property="og:type" content="website" />
+
+  <!-- Simple, accessible styling (no frameworks needed) -->
   <style>
     :root {
       --bg: #0b0f19;
       --card: #121a2a;
       --text: #e7eaf0;
       --muted: #aab2c5;
+      --line: #24314d;
       --accent: #6ea8fe;
       --accent2: #8be9fd;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
       --radius: 18px;
       --max: 1080px;
     }
 
     * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background: var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(900px 500px at 20% 10%, rgba(110,168,254,.18), transparent 55%),
+                  radial-gradient(900px 500px at 80% 0%, rgba(139,233,253,.14), transparent 55%),
+                  var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.55;
     }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .skip {
+      position: absolute;
+      left: -999px;
+      top: 10px;
+      background: var(--accent);
+      color: #000;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-weight: 700;
+      z-index: 999;
+    }
+    .skip:focus { left: 10px; }
 
     header {
       position: sticky;
       top: 0;
-      background: #0b0f19;
-      border-bottom: 1px solid #24314d;
-      padding: 12px 18px;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,15,25,.7);
+      border-bottom: 1px solid rgba(36,49,77,.7);
     }
 
-    nav {
+    .nav {
       max-width: var(--max);
-      margin: auto;
+      margin: 0 auto;
+      padding: 12px 18px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      gap: 12px;
     }
 
-    nav a {
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      white-space: nowrap;
+    }
+
+    .badge {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(110,168,254,.35), rgba(139,233,253,.22));
+      border: 1px solid rgba(110,168,254,.35);
+      box-shadow: var(--shadow);
+    }
+
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .menu a {
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
       color: var(--muted);
-      margin-left: 14px;
-      text-decoration: none;
       font-weight: 600;
     }
 
-    nav a:hover { color: var(--text); }
+    .menu a:hover,
+    .menu a[aria-current="true"] {
+      color: var(--text);
+      border-color: rgba(110,168,254,.35);
+      background: rgba(18,26,42,.6);
+      text-decoration: none;
+    }
 
-    main {
+    .container {
       max-width: var(--max);
-      margin: auto;
-      padding: 30px 18px 80px;
+      margin: 0 auto;
+      padding: 26px 18px 70px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
     }
 
     .card {
-      background: var(--card);
+      background: rgba(18,26,42,.78);
+      border: 1px solid rgba(36,49,77,.9);
       border-radius: var(--radius);
-      padding: 20px;
-      margin-bottom: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
     }
 
     h1 {
-      font-size: 2.6rem;
-      margin-bottom: 6px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      color: transparent;
+      margin: 0 0 10px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.12;
+      letter-spacing: -.6px;
     }
 
-    h2 {
-      text-transform: uppercase;
-      font-size: 1rem;
+    .subtitle {
+      margin: 0;
       color: var(--muted);
-      margin-bottom: 10px;
+      font-size: 1.05rem;
     }
 
-    ul { padding-left: 18px; }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
 
-    .chips span {
-      display: inline-block;
-      padding: 6px 10px;
+    .chip {
+      padding: 8px 10px;
       border-radius: 999px;
-      background: #0b0f19;
-      border: 1px solid #24314d;
-      margin: 6px 6px 0 0;
+      border: 1px solid rgba(36,49,77,.95);
+      background: rgba(11,15,25,.45);
       color: var(--muted);
-      font-size: .9rem;
+      font-weight: 600;
+      font-size: .92rem;
     }
 
-    footer {
-      text-align: center;
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(36,49,77,.95);
+      background: rgba(11,15,25,.45);
+      color: var(--text);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .btn.primary {
+      border-color: rgba(110,168,254,.45);
+      background: linear-gradient(135deg, rgba(110,168,254,.22), rgba(139,233,253,.12));
+    }
+
+    .btn:hover { text-decoration: none; filter: brightness(1.08); }
+
+    .side {
+      display: grid;
+      gap: 12px;
+    }
+
+    .kpi {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .kpi .mini {
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(11,15,25,.45);
+      border: 1px solid rgba(36,49,77,.9);
+    }
+
+    .mini .label { color: var(--muted); font-weight: 700; font-size: .9rem; }
+    .mini .value { font-weight: 900; font-size: 1.1rem; margin-top: 4px; }
+
+    section {
+      margin-top: 20px;
+      scroll-margin-top: 80px;
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+      letter-spacing: .2px;
+      text-transform: uppercase;
       color: var(--muted);
-      font-size: .9rem;
-      margin-top: 40px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+
+    .col-6 { grid-column: span 6; }
+    .col-12 { grid-column: span 12; }
+
+    @media (max-width: 860px) {
+      .col-6 { grid-column: span 12; }
+    }
+
+    .item h3 {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+    }
+
+    .item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .meta {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    ul.clean {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: .95rem;
+      text-align: center;
+    }
+
+    /* Focus styles for accessibility */
+    :focus-visible {
+      outline: 3px solid rgba(110,168,254,.65);
+      outline-offset: 3px;
+      border-radius: 12px;
+    }
+
+    /* Print-friendly (if someone prints your site) */
+    @media print {
+      header { position: static; backdrop-filter: none; background: #fff; color: #000; }
+      body { background: #fff; color: #000; }
+      .card { box-shadow: none; border: 1px solid #ccc; }
+      .btn { display: none; }
+      a { color: #000; text-decoration: underline; }
     }
   </style>
+
+  <!-- Structured data (SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Michael Blamoun",
+    "jobTitle": "Emergency Medical Technician (EMT)",
+    "url": "https://example.com",
+    "sameAs": [
+      "https://www.linkedin.com/in/",
+      "https://github.com/"
+    ]
+  }
+  </script>
 </head>
 
 <body>
+  <a class="skip" href="#main">Skip to main content</a>
 
-<header>
-  <nav>
-    <strong>Michael Blamoun</strong>
-    <div>
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
-      <a href="#contact">Contact</a>
+  <header>
+    <nav class="nav" aria-label="Primary">
+      <div class="brand">
+        <div class="badge" aria-hidden="true">★</div>
+        <span>Michael Blamoun</span>
+      </div>
+
+      <div class="menu" role="list">
+        <a role="listitem" href="#about">About</a>
+        <a role="listitem" href="#experience">Experience</a>
+        <a role="listitem" href="#clinical">Clinical Experience</a>
+        <a role="listitem" href="#certifications">Certifications</a>
+        <a role="listitem" href="#skills">Skills</a>
+        <a role="listitem" href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="container">
+    <!-- HERO -->
+    <div class="hero">
+      <section class="card" aria-labelledby="intro-title">
+        <h1 id="intro-title">Hi, I’m <span style="background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip:text; background-clip:text; color: transparent;">Michael Blamoun</span>.</h1>
+        <p class="subtitle">
+          EMT with experience in patient care support, emergency response readiness, and member-focused customer service in a high-traffic fitness environment.
+        </p>
+
+        <div class="chips" aria-label="Quick highlights">
+          <span class="chip">Troy, MI</span>
+          <span class="chip">Dorsey College (EMT)</span>
+          <span class="chip">Emergency Medical Technician</span>
+          <span class="chip">Open to: Medical field experience</span>
+        </div>
+
+        <div class="cta">
+          <a class="btn primary" href="#contact">Contact Me</a>
+          
+          <!-- Replace resume.pdf with your actual file name once you upload it to the same folder -->
+          <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Download Résumé (PDF)</a>
+        </div>
+      </section>
+
+      <aside class="side" aria-label="At a glance">
+        <div class="card">
+          <h2 class="section-title">At a glance</h2>
+          <div class="kpi">
+            <div class="mini">
+              <div class="label">Focus</div>
+              <div class="value">Emergency Medicine</div>
+            </div>
+            <div class="mini">
+              <div class="label">Strengths</div>
+              <div class="value">Communication · Analysis</div>
+            </div>
+            <div class="mini">
+              <div class="label">Tools</div>
+              <div class="value">CPR · AED · First Aid</div>
+            </div>
+            <div class="mini">
+              <div class="label">Links</div>
+              <div class="value"><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="section-title">Accessibility</h2>
+          <p class="meta">
+            This site uses semantic headings, keyboard-friendly navigation, high-contrast colors, and a skip link.
+          </p>
+        </div>
+      </aside>
     </div>
-  </nav>
-</header>
 
-<main>
+    <!-- ABOUT -->
+    <section id="about" class="card" aria-labelledby="about-title">
+      <h2 class="section-title" id="about-title">About</h2>
+      <p class="meta">
+        I’m an EMT based in Troy, MI with hands-on experience supporting emergency care and maintaining readiness in the field. I currently work with Superior Ambulance, where I assist with patient care workflows, equipment checks, and emergency response support. Outside of EMS, I work at Life Time and support members through front-desk concierge/customer service as well as aquatic safety roles. I’m looking to continue building my lifesaving skills and gain more experience in the medical field through clinical and patient-facing opportunities.
+      </p>
+    </section>
 
-<section class="card">
-  <h1>Michael Blamoun</h1>
-  <p>
-    EMT-B, Medical Assistant, and Medical Scribe with experience in emergency response,
-    outpatient clinical care, neuroscience research, and high-level customer service.
-  </p>
-  <div class="chips">
-    <span>Troy, MI</span>
-    <span>EMT-B</span>
-    <span>MA & Scribe</span>
-    <span>Neuroscience (BS)</span>
-  </div>
-</section>
+    <!-- EXPERIENCE -->
+    <section id="experience" aria-labelledby="exp-title">
+      <h2 class="section-title" id="exp-title">Experience</h2>
+      <div class="grid">
+        <article class="card col-6 item">
+          <h3>Medical Assistant & Medical Scribe — Matthews Medical Center</h3>
+          <div class="meta">Jan 2026 – Present</div>
+          <ul class="clean">
+            <li>Assist physicians with patient intake, vitals, and clinical workflows in a fast-paced outpatient setting.</li>
+            <li>Document patient encounters in real time as a medical scribe, ensuring accuracy, clarity, and compliance with clinical standards.</li>
+            <li>Support patient flow and communication between providers, staff, and patients to improve efficiency and quality of care.</li>
+            <li>Maintain confidentiality and professionalism while handling sensitive medical information.</li>
+          </ul>
+        </article>
 
-<section id="about" class="card">
-  <h2>About</h2>
-  <p>
-    I am an EMT-B and Medical Assistant currently working as a medical scribe at Matthews Medical Center.
-    My background includes emergency medical services, outpatient clinical documentation,
-    and member-facing roles requiring strong communication and professionalism.
-    I am pursuing a Bachelor of Science in Neuroscience with a minor in Chemistry at Wayne State University
-    and am interested in continuing toward a career in medicine.
-  </p>
-</section>
+        <article class="card col-6 item">
+          <h3>Membership Concierge Level 1 · Lifeguard/Swim Instructor — Life Time Fitness</h3>
+          <div class="meta">Dec 2022 – Present</div>
+          <ul class="clean">
+            <li>Serve as the first point of contact for members, professionally triaging questions, concerns, and service needs in a high-volume environment.</li>
+            <li>De-escalate member concerns and resolve issues efficiently while maintaining confidentiality and a calm, patient-centered approach.</li>
+            <li>Monitor facility activity and respond appropriately to safety incidents, applying CPR, AED, and First Aid protocols when necessary.</li>
+            <li>Communicate clearly with team members and supervisors to ensure smooth operations and a safe, welcoming environment.</li>
+          </ul>
+        </article>
 
-<section id="experience" class="card">
-  <h2>Experience</h2>
+        <article class="card col-12 item">
+          <h3>Education</h3>
+          <div class="meta">Wayne State University · Bachelor of Science in Neuroscience (in progress)</div>
+          <div class="meta">Minor: Chemistry</div>
+          <ul class="clean">
+            <li>Undergraduate neuroscience research using <em>Drosophila melanogaster</em> models.</li>
+            <li>Chemistry research experience emphasizing experimental design, data analysis, and laboratory techniques.</li>
+          </ul>
+          <div class="meta" style="margin-top:8px;">Dorsey College · Emergency Medical Technician (EMT-B) · Aug 2024</div>
+          <div class="meta">International Academy East · High School Diploma · Jun 2024</div>
+        </article>
+      </div>
+    </section>
 
-  <h3>Medical Assistant & Medical Scribe — Matthews Medical Center</h3>
-  <p><em>January 2026 – Present</em></p>
-  <ul>
-    <li>Assist physicians with patient intake, vitals, and clinical workflows.</li>
-    <li>Document patient encounters in real time, ensuring accuracy and clarity.</li>
-    <li>Support patient flow and communication between providers and staff.</li>
-    <li>Maintain confidentiality and professionalism with sensitive health information.</li>
-  </ul>
+    <!-- CLINICAL EXPERIENCE -->
+    <section id="clinical" aria-labelledby="clinical-title">
+      <h2 class="section-title" id="clinical-title">Clinical Experience</h2>
+      <div class="grid">
+        <article class="card col-12 item">
+          <p class="meta">This section highlights hands-on clinical exposure across emergency medical services, outpatient care, and academic research environments.</p>
+        </article>
+      </div>
+    </section>
 
-  <h3>Membership Concierge Level 1 — Life Time Fitness</h3>
-  <p><em>December 2022 – Present</em></p>
-  <ul>
-    <li>Serve as the first point of contact for members in a high-volume environment.</li>
-    <li>Resolve concerns professionally while maintaining confidentiality.</li>
-    <li>Respond to safety incidents using CPR, AED, and First Aid training.</li>
-  </ul>
-</section>
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="card" aria-labelledby="cert-title">
+      <h2 class="section-title" id="cert-title">Certifications</h2>
+      <div class="chips">
+        <span class="chip">EMT-B (Licensed, valid through Dec 2027)</span>
+        <span class="chip">AHA BLS (CPR & AED)</span>
+        <span class="chip">First Aid</span>
+        <span class="chip">Lifeguard Certification</span>
+      </div>
+    </section>
 
-<section id="education" class="card">
-  <h2>Education & Research</h2>
+    <!-- SKILLS -->
+    <section id="skills" class="card" aria-labelledby="skills-title">
+      <h2 class="section-title" id="skills-title">Skills</h2>
+      <div class="grid">
+        <div class="col-6">
+          <h3 style="margin:0 0 8px;">Technical</h3>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">Excel</span>
+            <span class="chip">SQL</span>
+            <span class="chip">(Add more)</span>
+          </div>
+        </div>
+        <div class="col-6">
+          <h3 style="margin:0 0 8px;">Professional</h3>
+          <div class="chips">
+            <span class="chip">Leadership</span>
+            <span class="chip">Teamwork</span>
+            <span class="chip">Teaching</span>
+            <span class="chip">Communication</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <p><strong>Wayne State University</strong></p>
-  <p>Bachelor of Science in Neuroscience (in progress)</p>
-  <p>Minor: Chemistry</p>
-  <ul>
-    <li>Undergraduate neuroscience research using <em>Drosophila melanogaster</em> models.</li>
-    <li>Chemistry research emphasizing experimental design and data analysis.</li>
-  </ul>
+    <!-- CONTACT -->
+    <section id="contact" class="card" aria-labelledby="contact-title">
+      <h2 class="section-title" id="contact-title">Contact</h2>
+      <p class="meta">Best way to reach me:</p>
+      <ul class="clean">
+        <li>Email: <a href="mailto:michaelblamoun06@outlook.com">michaelblamoun06@outlook.com</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">linkedin.com/in/your-handle</a></li>
+        <li>GitHub (optional): <a href="https://github.com/your-handle" target="_blank" rel="noopener">github.com/your-handle</a></li>
+      </ul>
 
-  <p><strong>Dorsey College</strong> — Emergency Medical Technician (EMT-B), 2024</p>
-</section>
+      <hr style="border: none; border-top:1px solid rgba(36,49,77,.9); margin: 14px 0;">
 
-<section class="card">
-  <h2>Certifications</h2>
-  <div class="chips">
-    <span>EMT-B (Licensed)</span>
-    <span>AHA BLS (CPR & AED)</span>
-    <span>First Aid</span>
-    <span>Lifeguard Certified</span>
-  </div>
-</section>
+      <p class="meta"><strong>Quick message:</strong> (This opens your email app)</p>
+      <a class="btn primary" href="mailto:michaelblamoun06@outlook.com?subject=Professional%20Website%20Inquiry&body=Hi%20Your%20Name%2C%0A%0A%28Write%20your%20message%20here%29%0A%0AThanks%2C%0A">Email Me</a>
+    </section>
 
-<section id="contact" class="card">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:michaelblamoun06@outlook.com">michaelblamoun06@outlook.com</a></p>
-</section>
+    <div class="footer">
+      © <span id="year"></span> Michael Blamoun · Built for Project 1B · <span style="color:var(--muted)">Last updated:</span> <span id="updated"></span>
+    </div>
+  </main>
 
-<footer>
-  © 2026 Michael Blamoun · Project 1B Professional Website
-</footer>
+  <script>
+    // Small enhancement: auto year + "last updated" date
+    const now = new Date();
+    document.getElementById('year').textContent = now.getFullYear();
+    document.getElementById('updated').textContent = now.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
 
-</main>
+    // Highlight active nav link while scrolling
+    const sections = Array.from(document.querySelectorAll('main section[id]'));
+    const navLinks = Array.from(document.querySelectorAll('.menu a'));
+
+    const setActive = () => {
+      const y = window.scrollY + 110;
+      let current = sections[0]?.id;
+      for (const s of sections) {
+        if (s.offsetTop <= y) current = s.id;
+      }
+      for (const a of navLinks) {
+        const isCurrent = a.getAttribute('href') === `#${current}`;
+        a.setAttribute('aria-current', isCurrent ? 'true' : 'false');
+      }
+    };
+
+    window.addEventListener('scroll', setActive, { passive: true });
+    setActive();
+  </script>
 </body>
 </html>
